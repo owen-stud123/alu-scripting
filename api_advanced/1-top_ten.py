@@ -25,3 +25,4 @@ def top_ten(subreddit):
     except:
         print("OK", end="")
         return True
+
