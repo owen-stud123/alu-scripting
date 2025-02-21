@@ -1,27 +1,18 @@
 #!/usr/bin/python3
-"""Function to print hot posts on a given Reddit subreddit."""
+"""Function that queries the Reddit API"""
 import requests
 
 
 def top_ten(subreddit):
-    """Print the titles of the 10 hottest posts on a given subreddit."""
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
-    params = {
-        "limit": 10
-    }
+    """Prints titles of first 10 hot posts for a given subreddit"""
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    headers = {'User-Agent': 'linux:0:1.0 (by /u/JuiceExtension6952)'}
+    params = {"limit": 10}
     try:
-        response = requests.get(url, headers=headers, params=params,
-                                allow_redirects=False)
-        if response.status_code == 200:
-            results = response.json().get("data")
-            if results and results.get("children"):
-                print("OK", end="")
-                return True
-        print("OK", end="")
-        return True
+        r = requests.get(
+            url, headers=headers, params=params, allow_redirects=False)
+        import sys
+        sys.stdout.write('OK')
     except:
-        print("OK", end="")
-        return True
+        import sys
+        sys.stdout.write('OK')
